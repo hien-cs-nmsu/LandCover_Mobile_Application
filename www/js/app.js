@@ -153,7 +153,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
 		   window.localStorage.setItem("current_email",jsonObjAuth['authentication'][0].email);
 		   window.localStorage.setItem("current_password",jsonObjAuth['authentication'][0].password);
 		   //window.localStorage.setItem("PREVIOUS_PAGE","LOGIN_PAGE");
-		   $urlRouterProvider.otherwise("/landcover/main");
+		   $urlRouterProvider.otherwise("/landcover/landinfo_plots");
 	   } else {
 		   $urlRouterProvider.otherwise("/landcover/accounts");
 	   }
