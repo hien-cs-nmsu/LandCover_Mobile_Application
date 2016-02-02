@@ -1,0 +1,22 @@
+<link href="css/plots.css" rel="stylesheet">
+<ion-view align-title="left" hide-back-button="true" cache-view="false">
+<ion-nav-title >
+      <img src="img/ic_launcher.png" class="title-image" align="left" />&nbsp;LandInfo Plots
+    </ion-nav-title>
+
+	 <ion-nav-buttons side="right" style="color: grey;">
+	    <a class="button button-icon ion-plus-round" ui-sref="landcover.new_transect"></a>
+	    <a class="button button-icon ion-gear-b" ui-sref="landcover.settings"></a>
+	  </ion-nav-buttons>
+
+ 	<ion-content class="padding body" >
+	<ion-list> 
+	   <ion-item class="othercomponent" ng-repeat="plot in plots" ng-click="selectPlot(plot)" style="vertical-align: middle">
+		{{plotname(plot.name)}}<img  ng-src="{{plot.img_src}}" align="right" class="checkmark"/>
+		</ion-item>
+	 </ion-list>
+	<p></p>
+	</ion-content>
+	</ion-view>  
+
+  

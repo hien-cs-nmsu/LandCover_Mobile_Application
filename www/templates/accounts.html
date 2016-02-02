@@ -1,0 +1,12 @@
+<link href="css/accounts.css" rel="stylesheet">
+<div>
+	
+	<ion-view view-title="Accounts" hide-back-button="true"> <ion-content
+		class="padding"> 
+	<p class="lpks-p"> Select an Account </p>
+	<ion-list> <ion-item class="lpks-id"
+		ng-repeat="account in accounts" ng-click="selectAccount(account)">
+	{{account.email}}</ion-item> </ion-list>
+	<p></p>
+	<a class="item item-icon-right othercomponent" ui-sref="landcover.login">Add account <i class="icon ion-plus-round icon-accessory"></i> </a> </ion-content> </ion-view>
+</div>
