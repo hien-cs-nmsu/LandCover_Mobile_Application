@@ -53,8 +53,57 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
       views: {
         'home-tab': {
           templateUrl: "templates/landinfo_plots.html",
-          //controller: 'SignInCtrl'
           controller: 'List_LandInfo_Plots_Ctrl'
+        }
+      }
+   })
+  .state('landcover.main_transect', {
+      url: "/main_transect",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/main_transect.html",
+          controller: 'Main_Transect_Ctrl'
+        }
+      }
+   })
+   .state('landcover.north_transect', {
+      url: "/main_transect",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/north_transect.html",
+          controller: 'North_Transect_Ctrl'
+        }
+      }
+   })
+  .state('landcover.east_transect', {
+      url: "/east_transect",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/east_transect.html",
+          controller: 'East_Transect_Ctrl'
+        }
+      }
+   })
+  .state('landcover.south_transect', {
+      url: "/south_transect",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/south_transect.html",
+          controller: 'South_Transect_Ctrl'
+        }
+      }
+   })
+   .state('landcover.west_transect', {
+      url: "/west_transect",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/west_transect.html",
+          controller: 'West_Transect_Ctrl'
         }
       }
    })

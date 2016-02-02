@@ -1,0 +1,78 @@
+<link href="css/main_transect.css" rel="stylesheet">
+<ion-view view-title="" hide-back-button="true">
+
+<ion-nav-buttons side="left">
+   <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="goBack()" ></a>
+   <a align="left" class="button button-icon" ng-click="goBack()">
+      <img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details
+   </a> 
+</ion-nav-buttons>
+    
+<ion-content class="padding body">
+    <p><a  class="lpks-button" ng-click="submitLandCoverPlot()" id="btnSubmitPlot" style="width:100px">Submit</a> </p><br/><br/>
+    <div class="row" style="height:100px;">
+               <div class="col col-33">
+                    
+               </div>
+               <div class="col col-33" align="center">
+                    <img class="content" ng-src="/img/north.jpg" ng-click="goto_Navigator_Transect('NORTH')" style="width:40%; height:90%" />
+               </div>
+               <div class="col col-33">
+                    
+               </div> 
+    </div>
+    <div class="row" style="height:100px;">
+               <div class="col col-33" align="right">
+                    <img class="content" ng-src="/img/west.jpg" ng-click="goto_Navigator_Transect('WEST')" style="width:40%; height:90%" />
+               </div>
+               <div class="col col-33" align="center">
+                    <img class="content" ng-src="/img/lpks_logo.png" ng-click="goto_LandInfo()" style="width:40%; height:90%" />
+               </div>
+               <div class="col col-33" align="left">
+                    <img class="content" ng-src="/img/east.jpg" ng-click="goto_Navigator_Transect('EAST')" style="width:40%; height:90%" />
+               </div> 
+    </div>     
+    <div class="row" style="height:100px;">
+               <div class="col col-33">
+                    
+               </div>
+               <div class="col col-33" align="center">
+                    <img class="content" ng-src="/img/south.jpg" ng-click="goto_Navigator_Transect('SOUTH')" style="width:40%; height:90%" />
+               </div>
+               <div class="col col-33">
+                    
+               </div> 
+    </div>
+    
+    <br/>
+	<label class="item item-input"> 
+	    <span class="input-label">Dominant Woody Secies (by cover)</span>
+	</label> 
+	<label class="item item-input"> 
+	    <input type="text" id="dominant_woody" />
+	</label> 
+	<br/>
+	
+	<label class="item item-input"> 
+	    <span class="input-label">Dominant NonWoody Secies (by cover)</span>
+	</label> 
+	<label class="item item-input"> 
+	    <input type="text" id="dominant_woody" />
+	</label> 
+	<br/>
+	
+	<div id="previously_submitted_date">
+		<label class="item item-input"> 
+		    <span class="input-label">View previously submitted data</span>
+		</label> 
+		<label class="item item-input"> 
+		    <select ng-model="previously_submitted_date" ng-change="previously_submitted_date">
+		      <option value="2016-01-01">2016-01-01</option>
+		      <option value="2016-15-01">2016-15-01</option>
+		    </select>
+		</label> 
+	</div>
+		
+	<br/>
+</ion-content>
+</ion-view>

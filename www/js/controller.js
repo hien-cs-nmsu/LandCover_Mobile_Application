@@ -61,11 +61,120 @@ angular.module('ionicApp.controller',['ngCordova'])
 	};
 }) 
 // End Setting
+
+/****************************************/
+/** North Transect Controller **/
+/****************************************/
+.controller('North_Transect_Ctrl', function($scope, $state) {
+	var plot_name = window.localStorage.getItem("current_plot_name");
+	var recorder_name = window.localStorage.getItem("current_email");
+	var display_plot_name = window.localStorage.getItem("current_display_plot_name");
+	$scope.plot_name = display_plot_name;
+
+	$scope.goBack = function () {
+		$state.go("landcover.main_transect");
+	};
+}) 
+//End North_Transect_Ctrl
+/****************************************/
+/** East Transect Controller **/
+/****************************************/
+.controller('East_Transect_Ctrl', function($scope, $state) {
+	var plot_name = window.localStorage.getItem("current_plot_name");
+	var recorder_name = window.localStorage.getItem("current_email");
+	var display_plot_name = window.localStorage.getItem("current_display_plot_name");
+	$scope.plot_name = display_plot_name;
+
+	$scope.goBack = function () {
+		$state.go("landcover.main_transect");
+	};
+}) 
+//End East_Transect_Ctrl
+/****************************************/
+/** South Transect Controller **/
+/****************************************/
+.controller('South_Transect_Ctrl', function($scope, $state) {
+	var plot_name = window.localStorage.getItem("current_plot_name");
+	var recorder_name = window.localStorage.getItem("current_email");
+	var display_plot_name = window.localStorage.getItem("current_display_plot_name");
+	$scope.plot_name = display_plot_name;
+
+	$scope.goBack = function () {
+		$state.go("landcover.main_transect");
+	};
+}) 
+//End South_Transect_Ctrl
+/****************************************/
+/** West Transect Controller **/
+/****************************************/
+.controller('West_Transect_Ctrl', function($scope, $state) {
+	var plot_name = window.localStorage.getItem("current_plot_name");
+	var recorder_name = window.localStorage.getItem("current_email");
+	var display_plot_name = window.localStorage.getItem("current_display_plot_name");
+	$scope.plot_name = display_plot_name;
+	
+	var action = window.localStorage.getItem("current_action");
+	
+	
+	
+	
+	$scope.goBack = function () {
+		$state.go("landcover.main_transect");
+	};
+}) 
+//End West_Transect_Ctrl
+/****************************************/
+/** Main Transect Controller **/
+/****************************************/
+.controller('Main_Transect_Ctrl', function($scope, $state) {
+	var plot_name = window.localStorage.getItem("current_plot_name");
+	var recorder_name = window.localStorage.getItem("current_email");
+	$scope.plot_name = getRealPlotName(recorder_name,plot_name);
+	window.localStorage.setItem("current_display_plot_name",$scope.plot_name);
+	var action = "ADD_NEW";
+	$scope.goBack = function () {
+		$state.go("landcover.landinfo_plots");
+	};
+	
+	/* Active a new object LandCover */
+	
+	$scope.goto_Navigator_Transect = function(compass) {
+		console.log(compass);
+		if (action == "ADD_NEW") {
+			window.localStorage.getItem("current_action",action);
+			if (compass == "NORTH") {
+				$state.go("landcover.north_transect");
+			} else if (compass == "SOUTH") {
+				$state.go("landcover.south_transect");
+			} else if (compass == "WEST") {
+				$state.go("landcover.west_transect");
+			} else if (compass == "EAST") {
+				$state.go("landcover.east_transect");
+			}
+			
+		} else if (action == "EDIT_OLD") {
+			window.localStorage.getItem("current_action",action);
+			if (compass == "NORTH"){
+		    } else if (compass == "SOUTH") {
+				
+			} else if (compass == "WEST") {
+				
+			} else if (compass == "EAST") {
+				
+			}	
+		} else {
+			
+		}
+		
+	};
+}) 
+// End Main_Transect_Ctrl
 /****************************************/
 /** ListPlotsCtrl Controller **/
 /****************************************/
 .controller('List_LandInfo_Plots_Ctrl', function($scope,$state, $http, $ionicHistory,$ionicLoading) {
     function checkExist_LandCover_Record(plot){
+    	/* Make API request to check or check inside Plot data after Get ALL */
 		return false;
     }
 	var email = window.localStorage.getItem('current_email');
@@ -179,14 +288,26 @@ angular.module('ionicApp.controller',['ngCordova'])
 
 
 	$scope.selectPlot = function(plot){
-		$scope.selectedPlot = plot;
+		var selectedPlot = plot;
+		/* Go to new transect */
+		console.log(plot);
+		var plot_id = plot.ID;
+		var plot_name = plot.name;
+	    
+		window.localStorage.setItem("current_plot_id", plot_id);
+		window.localStorage.setItem("current_plot_name",plot_name);
+		
+		$state.go('landcover.main_transect');
+		
 	};
 	function clearAllCache() {
 		console.log("Clear Cache");
 		$ionicHistory.clearCache();
 	}
 
-}) // End ListPlotsCtrl
+}) 
+
+// End ListPlotsCtrl
 
 /****************************************/
 /** LandCover SignIn Controller **/
