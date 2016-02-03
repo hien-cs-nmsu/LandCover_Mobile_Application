@@ -77,6 +77,16 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
         }
       }
    })
+   .state('landcover.transect_cover', {
+      url: "/transect_cover",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/transect_cover.html",
+          controller: 'Transect_Cover_Ctrl'
+        }
+      }
+   })
   .state('landcover.east_transect', {
       url: "/east_transect",
       cache: false,
@@ -156,8 +166,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
 		   $urlRouterProvider.otherwise("/landcover/landinfo_plots");
 	   } else {
 		   $urlRouterProvider.otherwise("/landcover/accounts");
-	   }
-	   
+	   }   
   }
 });
 

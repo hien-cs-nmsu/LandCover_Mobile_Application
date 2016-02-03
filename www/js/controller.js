@@ -70,7 +70,63 @@ angular.module('ionicApp.controller',['ngCordova'])
 	var recorder_name = window.localStorage.getItem("current_email");
 	var display_plot_name = window.localStorage.getItem("current_display_plot_name");
 	$scope.plot_name = display_plot_name;
-
+	var current_plot = JSON.parse(window.localStorage.getItem("current_plot_data"));
+	var current_action = window.localStorage.getItem("current_action");
+	console.log(current_action);
+	
+	/* Filter data */
+	
+	
+	if (current_action == "ADD_NEW"){
+		$scope.status_north_5m = "img/lpks_empty_checkmark.png";
+		$scope.status_north_10m = "img/lpks_empty_checkmark.png";
+		$scope.status_north_15m = "img/lpks_empty_checkmark.png";
+		$scope.status_north_20m = "img/lpks_empty_checkmark.png";
+		$scope.status_north_25m = "img/lpks_empty_checkmark.png";
+	} else if (current_action == "ADD_OLD"){
+		$scope.status_north_5m = "img/lpks_empty_checkmark.png";
+		$scope.status_north_10m = "img/lpks_empty_checkmark.png";
+		$scope.status_north_15m = "img/lpks_empty_checkmark.png";
+		$scope.status_north_20m = "img/lpks_empty_checkmark.png";
+		$scope.status_north_25m = "img/lpks_empty_checkmark.png";
+	} else if (current_action == "VIEW_OLD"){
+		$scope.status_north_5m = "img/lpks_green_checkmark.png";
+		$scope.status_north_10m = "img/lpks_green_checkmark.png";
+		$scope.status_north_15m = "img/lpks_green_checkmark.png";
+		$scope.status_north_20m = "img/lpks_green_checkmark.png";
+		$scope.status_north_25m = "img/lpks_green_checkmark.png";	
+	}
+	
+	if (current_action == "VIEW_OLD" && current_plot.has_land_cover == true){
+		var north_transect = [];
+		var transect = current_plot.land_cover_data.transect;
+		var numberTransect = current_plot.land_cover_data.transect.length;
+		for(var i = 0 ; i < numberTransect ; i++) {
+		    if (transect[i].direction == "NORTH") {
+		    	north_transect.push(transect[i]);
+		    }
+		}
+		window.localStorage.setItem("north_transect",north_transect);
+	} 
+	
+    $scope.goToSegment = function(direction,segment) {
+    	if (segment == "m5"){
+    		segment = "5m";
+    	} else if (segment == "m10") {
+    		segment = "10m";
+    	} else if (segment == "m15" ){
+    		segment = "15m";
+    	} else if (segment == "m20") {
+    		segment = "20m";
+    	} else if (segment == "m25") {
+    		segment = "25m";
+    	}
+    	
+		window.localStorage.setItem("current_segment",segment);
+		window.localStorage.setItem("current_transect","NORTH");
+		$state.go("landcover.transect_cover");
+	};
+	
 	$scope.goBack = function () {
 		$state.go("landcover.main_transect");
 	};
@@ -84,7 +140,48 @@ angular.module('ionicApp.controller',['ngCordova'])
 	var recorder_name = window.localStorage.getItem("current_email");
 	var display_plot_name = window.localStorage.getItem("current_display_plot_name");
 	$scope.plot_name = display_plot_name;
-
+	var current_plot = JSON.parse(window.localStorage.getItem("current_plot_data"));
+	var current_action = window.localStorage.getItem("current_action");
+	
+	if (current_action == "ADD_NEW"){
+		$scope.status_east_5m = "img/lpks_empty_checkmark.png";
+		$scope.status_east_10m = "img/lpks_empty_checkmark.png";
+		$scope.status_east_15m = "img/lpks_empty_checkmark.png";
+		$scope.status_east_20m = "img/lpks_empty_checkmark.png";
+		$scope.status_east_25m = "img/lpks_empty_checkmark.png";
+	} else if (current_action == "ADD_OLD"){
+		$scope.status_east_5m = "img/lpks_empty_checkmark.png";
+		$scope.status_east_10m = "img/lpks_empty_checkmark.png";
+		$scope.status_east_15m = "img/lpks_empty_checkmark.png";
+		$scope.status_east_20m = "img/lpks_empty_checkmark.png";
+		$scope.status_east_25m = "img/lpks_empty_checkmark.png";
+	} else if (current_action == "VIEW_OLD"){
+		$scope.status_east_5m = "img/lpks_green_checkmark.png";
+		$scope.status_east_10m = "img/lpks_green_checkmark.png";
+		$scope.status_east_15m = "img/lpks_green_checkmark.png";
+		$scope.status_east_20m = "img/lpks_green_checkmark.png";
+		$scope.status_east_25m = "img/lpks_green_checkmark.png";
+	}
+	
+	if (current_action == "VIEW_OLD" && current_plot.has_land_cover == true){
+		var east_transect = [];
+		var transect = current_plot.land_cover_data.transect;
+		var numberTransect = current_plot.land_cover_data.transect.length;
+		for(var i = 0 ; i < numberTransect ; i++) {
+		    if (transect[i].direction == "EAST") {
+		    	east_transect.push(transect[i]);
+		    }
+		}
+		//console.log(east_transect);
+		window.localStorage.setItem("east_transect",east_transect);
+	} 
+	
+	$scope.goToSegment = function(direction,segment) {
+		window.localStorage.setItem("current_segment",segment);
+		window.localStorage.setItem("current_transect","EAST");
+		$state.go("landcover.transect_cover");
+	};
+	
 	$scope.goBack = function () {
 		$state.go("landcover.main_transect");
 	};
@@ -98,7 +195,48 @@ angular.module('ionicApp.controller',['ngCordova'])
 	var recorder_name = window.localStorage.getItem("current_email");
 	var display_plot_name = window.localStorage.getItem("current_display_plot_name");
 	$scope.plot_name = display_plot_name;
-
+	var current_plot = JSON.parse(window.localStorage.getItem("current_plot_data"));
+	var current_action = window.localStorage.getItem("current_action");
+	
+	if (current_action == "ADD_NEW"){
+		$scope.status_south_5m = "img/lpks_empty_checkmark.png";
+		$scope.status_south_10m = "img/lpks_empty_checkmark.png";
+		$scope.status_south_15m = "img/lpks_empty_checkmark.png";
+		$scope.status_south_20m = "img/lpks_empty_checkmark.png";
+		$scope.status_south_25m = "img/lpks_empty_checkmark.png";
+	} else if (current_action == "ADD_OLD"){
+		$scope.status_south_5m = "img/lpks_empty_checkmark.png";
+		$scope.status_south_10m = "img/lpks_empty_checkmark.png";
+		$scope.status_south_15m = "img/lpks_empty_checkmark.png";
+		$scope.status_south_20m = "img/lpks_empty_checkmark.png";
+		$scope.status_south_25m = "img/lpks_empty_checkmark.png";
+	} else if (current_action == "VIEW_OLD"){
+		$scope.status_south_5m = "img/lpks_green_checkmark.png";
+		$scope.status_south_10m = "img/lpks_green_checkmark.png";
+		$scope.status_south_15m = "img/lpks_green_checkmark.png";
+		$scope.status_south_20m = "img/lpks_green_checkmark.png";
+		$scope.status_south_25m = "img/lpks_green_checkmark.png";
+	}
+	
+	if (current_action == "VIEW_OLD" && current_plot.has_land_cover == true){
+		var south_transect = [];
+		var transect = current_plot.land_cover_data.transect;
+		var numberTransect = current_plot.land_cover_data.transect.length;
+		for(var i = 0 ; i < numberTransect ; i++) {
+		    if (transect[i].direction == "SOUTH") {
+		    	south_transect.push(transect[i]);
+		    }
+		}
+		//console.log(east_transect);
+		window.localStorage.setItem("south_transect",south_transect);
+	}
+	
+	$scope.goToSegment = function(direction,segment) {
+		window.localStorage.setItem("current_segment",segment);
+		window.localStorage.setItem("current_transect","SOUTH");
+		$state.go("landcover.transect_cover");
+	};
+	
 	$scope.goBack = function () {
 		$state.go("landcover.main_transect");
 	};
@@ -112,10 +250,47 @@ angular.module('ionicApp.controller',['ngCordova'])
 	var recorder_name = window.localStorage.getItem("current_email");
 	var display_plot_name = window.localStorage.getItem("current_display_plot_name");
 	$scope.plot_name = display_plot_name;
+	var current_plot = JSON.parse(window.localStorage.getItem("current_plot_data"));
+	var current_action = window.localStorage.getItem("current_action");
 	
-	var action = window.localStorage.getItem("current_action");
+	if (current_action == "ADD_NEW"){
+		$scope.status_west_5m = "img/lpks_empty_checkmark.png";
+		$scope.status_west_10m = "img/lpks_empty_checkmark.png";
+		$scope.status_west_15m = "img/lpks_empty_checkmark.png";
+		$scope.status_west_20m = "img/lpks_empty_checkmark.png";
+		$scope.status_west_25m = "img/lpks_empty_checkmark.png";
+	} else if (current_action == "ADD_OLD"){
+		$scope.status_west_5m = "img/lpks_empty_checkmark.png";
+		$scope.status_west_10m = "img/lpks_empty_checkmark.png";
+		$scope.status_west_15m = "img/lpks_empty_checkmark.png";
+		$scope.status_west_20m = "img/lpks_empty_checkmark.png";
+		$scope.status_west_25m = "img/lpks_empty_checkmark.png";
+	} else if (current_action == "VIEW_OLD"){
+		$scope.status_west_5m = "img/lpks_green_checkmark.png";
+		$scope.status_west_10m = "img/lpks_green_checkmark.png";
+		$scope.status_west_15m = "img/lpks_green_checkmark.png";
+		$scope.status_west_20m = "img/lpks_green_checkmark.png";
+		$scope.status_west_25m = "img/lpks_green_checkmark.png";
+	}
 	
+	if (current_action == "VIEW_OLD" && current_plot.has_land_cover == true){
+		var west_transect = [];
+		var transect = current_plot.land_cover_data.transect;
+		var numberTransect = current_plot.land_cover_data.transect.length;
+		for(var i = 0 ; i < numberTransect ; i++) {
+		    if (transect[i].direction == "WEST") {
+		    	west_transect.push(transect[i]);
+		    }
+		}
+		//console.log(east_transect);
+		window.localStorage.setItem("west_transect",west_transect);
+	}
 	
+	$scope.goToSegment = function(direction,segment) {
+		window.localStorage.setItem("current_segment",segment);
+		window.localStorage.setItem("current_transect","WEST");
+		$state.go("landcover.transect_cover");
+	};
 	
 	
 	$scope.goBack = function () {
@@ -123,25 +298,102 @@ angular.module('ionicApp.controller',['ngCordova'])
 	};
 }) 
 //End West_Transect_Ctrl
+
+/****************************************/
+/** East Transect Controller **/
+/****************************************/
+.controller('Transect_Cover_Ctrl', function($scope, $state) {
+	/* Force screen orientation is LandScape */
+	
+	/* End */
+	
+	
+	var plot_name = window.localStorage.getItem("current_plot_name");
+	var recorder_name = window.localStorage.getItem("current_email");
+	var display_plot_name = window.localStorage.getItem("current_display_plot_name");
+	$scope.plot_name = display_plot_name;
+	var current_plot = JSON.parse(window.localStorage.getItem("current_plot_data"));
+	var current_action = window.localStorage.getItem("current_action");
+	var current_transect = window.localStorage.getItem("current_transect");
+	var current_segment = window.localStorage.getItem("current_segment");
+	$scope.direction = current_transect;
+	console.log(current_segment);
+	$scope.segment = current_segment;
+	
+	$scope.goBack = function() {
+		if (current_transect == "NORTH") {
+			$state.go('landcover.north_transect');
+		} else if (current_transect == "EAST") {
+			$state.go('landcover.east_transect');
+		} else if (current_transect == "SOUTH") {
+			$state.go('landcover.south_transect');
+		} else if (current_transect == "WEST"){
+			$state.go('landcover.west_transect');
+		}
+	}
+})
 /****************************************/
 /** Main Transect Controller **/
 /****************************************/
 .controller('Main_Transect_Ctrl', function($scope, $state) {
 	var plot_name = window.localStorage.getItem("current_plot_name");
 	var recorder_name = window.localStorage.getItem("current_email");
+	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS_LANDCOVER"));
 	$scope.plot_name = getRealPlotName(recorder_name,plot_name);
 	window.localStorage.setItem("current_display_plot_name",$scope.plot_name);
-	var action = "ADD_NEW";
+	var current_plot = JSON.parse(window.localStorage.getItem("current_plot_data"));
+	console.log(current_plot);
+	$scope.previously_submitted_date = "VIEW_OLD";
+	presentStatusComponent();
+	
+	
+	
+	function presentStatusComponent() {
+		if (current_plot.has_land_cover == false){
+			action = "ADD_NEW";
+			document.getElementById("btnSubmitLandCover").style.display = "block";
+			document.getElementById("btnSummaryLandCover").style.display = "none";
+			document.getElementById("previously_submitted_date").style.display = "none";
+			$scope.dominant_nonwoody_species = "";
+			$scope.dominant_woody_species = "";
+		} else {
+		    var sub_action = $scope.previously_submitted_date;
+		    if (isEmpty(sub_action)){
+		    	sub_action = "ADD_OLD";
+		    }
+		    if (sub_action == "ADD_OLD"){
+		    	action = "ADD_OLD";
+		    	document.getElementById("btnSubmitLandCover").style.display = "block";
+				document.getElementById("btnSummaryLandCover").style.display = "none";
+				document.getElementById("previously_submitted_date").style.display = "block";
+		    } else {
+		    	action = "VIEW_OLD";
+		    	document.getElementById("btnSubmitLandCover").style.display = "none";
+			    document.getElementById("btnSummaryLandCover").style.display = "block";
+			    document.getElementById("previously_submitted_date").style.display = "block";
+		    }
+			if (isEmpty(current_plot.land_cover_data.transect[0].dominant_woody_species) == false) {
+				$scope.dominant_woody_species = current_plot.land_cover_data.transect[0].dominant_woody_species;
+		    }
+			if (isEmpty(current_plot.land_cover_data.transect[0].dominant_nonwoody_species) == false) {
+				$scope.dominant_nonwoody_species = current_plot.land_cover_data.transect[0].dominant_nonwoody_species;
+			}
+		}	
+	}
+	
 	$scope.goBack = function () {
 		$state.go("landcover.landinfo_plots");
 	};
 	
+	$scope.selectPreviouslySubmmittedDate = function(date) {
+		$scope.previously_submitted_date = date;
+		presentStatusComponent();
+	};
 	/* Active a new object LandCover */
-	
 	$scope.goto_Navigator_Transect = function(compass) {
 		console.log(compass);
-		if (action == "ADD_NEW") {
-			window.localStorage.getItem("current_action",action);
+		window.localStorage.setItem("current_action",action);
+		if (action == "ADD_NEW") {		
 			if (compass == "NORTH") {
 				$state.go("landcover.north_transect");
 			} else if (compass == "SOUTH") {
@@ -150,17 +402,17 @@ angular.module('ionicApp.controller',['ngCordova'])
 				$state.go("landcover.west_transect");
 			} else if (compass == "EAST") {
 				$state.go("landcover.east_transect");
-			}
-			
-		} else if (action == "EDIT_OLD") {
-			window.localStorage.getItem("current_action",action);
-			if (compass == "NORTH"){
-		    } else if (compass == "SOUTH") {
-				
+			}			
+		} else if (action == "VIEW_OLD") {
+			//window.localStorage.setItem("current_plot_data",JSON.stringify(current_plot));
+			if (compass == "NORTH") {
+				$state.go("landcover.north_transect");
+			} else if (compass == "SOUTH") {
+				$state.go("landcover.south_transect");
 			} else if (compass == "WEST") {
-				
+				$state.go("landcover.west_transect");
 			} else if (compass == "EAST") {
-				
+				$state.go("landcover.east_transect");
 			}	
 		} else {
 			
@@ -175,7 +427,7 @@ angular.module('ionicApp.controller',['ngCordova'])
 .controller('List_LandInfo_Plots_Ctrl', function($scope,$state, $http, $ionicHistory,$ionicLoading) {
     function checkExist_LandCover_Record(plot){
     	/* Make API request to check or check inside Plot data after Get ALL */
-		return false;
+		return plot.has_land_cover;
     }
 	var email = window.localStorage.getItem('current_email');
 	var recorder_name = email;
@@ -191,10 +443,9 @@ angular.module('ionicApp.controller',['ngCordova'])
 	   $http.get('http://128.123.177.21:8080/query', {
 			params : {
 				action : "get",
-				object : "landinfo",
+				object : "landcover_landinfo",
 				recorder_name : email,
-				display : "",
-				delimiter : ",",
+				quantity : "50",
 				version : ""
 			}
 		}).success(function(data) {
@@ -221,7 +472,7 @@ angular.module('ionicApp.controller',['ngCordova'])
 			   $state.go('landcover.main');
 		   } else  {
 			   var localPlots = JSON.stringify(data);	
-			   window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", localPlots);
+			   window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS_LANDCOVER", localPlots);
 		   }
 		}).error(function(err) {
 			$ionicLoading.hide();
@@ -241,11 +492,10 @@ angular.module('ionicApp.controller',['ngCordova'])
 		if (areThereAnyNewPlots == false) {
 		     //console.log("Caching & Syncing :  Get Data From Local Cache - NO NEWS");
 		     $scope.plots = {};
-		     //console.log(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
-		     var LIST_PLOTS =  JSON.parse(window.localStorage.getItem(email + "_" + "LIST_LANDINFO_PLOTS"));
+		     //console.log(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS_LANDCOVER"));
+		     var LIST_PLOTS =  JSON.parse(window.localStorage.getItem(email + "_" + "LIST_LANDINFO_PLOTS_LANDCOVER"));
 		     
-		     //console.log(LIST_PLOTS);
-		      
+		     //console.log(LIST_PLOTS);  
 		     /* Sort list of plot based on alphabet of plot_name */
 		     if (LIST_PLOTS != null && LIST_PLOTS != 'undefined'){
 		    	 if (LIST_PLOTS.length > 0){
@@ -290,13 +540,12 @@ angular.module('ionicApp.controller',['ngCordova'])
 	$scope.selectPlot = function(plot){
 		var selectedPlot = plot;
 		/* Go to new transect */
-		console.log(plot);
+		//console.log(plot);
 		var plot_id = plot.ID;
 		var plot_name = plot.name;
-	    
 		window.localStorage.setItem("current_plot_id", plot_id);
 		window.localStorage.setItem("current_plot_name",plot_name);
-		
+		window.localStorage.setItem("current_plot_data",JSON.stringify(plot));
 		$state.go('landcover.main_transect');
 		
 	};

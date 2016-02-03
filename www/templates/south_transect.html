@@ -7,19 +7,19 @@
     ng-click="goBack()"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} - South transect</a> </ion-nav-buttons> 
 
         <ion-content class="padding body">
-            <a class="item item-icon-right soillayer" href="#">5m
+            <a class="item item-icon-right soillayer" ng-click="goToSegment('SOUTH','5m');">5m
                <img  ng-src="{{status_south_5m}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/>
             </a>
-            <a class="item item-icon-right othercomponent" href="#">10m
+            <a class="item item-icon-right othercomponent" ng-click="goToSegment('SOUTH','10m');">10m
                <img  ng-src="{{status_south_10m}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/>
             </a>
-            <a class="item item-icon-right othercomponent" href="#">15m
+            <a class="item item-icon-right othercomponent" ng-click="goToSegment('SOUTH','15m');">15m
                <img  ng-src="{{status_south_15m}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/>
             </a>
-            <a class="item item-icon-right othercomponent" href="#">20m
+            <a class="item item-icon-right othercomponent" ng-click="goToSegment('SOUTH','20m');">20m
                <img  ng-src="{{status_south_20m}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/>
             </a>
-            <a class="item item-icon-right othercomponent" href="#">25m
+            <a class="item item-icon-right othercomponent" ng-click="goToSegment('SOUTH','25m');">25m
                <img  ng-src="{{status_south_25m}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/>
             </a>
         </ion-content>

@@ -9,7 +9,19 @@
 </ion-nav-buttons>
     
 <ion-content class="padding body">
-    <p><a  class="lpks-button" ng-click="submitLandCoverPlot()" id="btnSubmitPlot" style="width:100px">Submit</a> </p><br/><br/>
+    <div class="row" style="height:70px;">
+               <div class="col col-33" align="left">
+                    <button id="btnSubmitLandCover" class="button button-balanced" style="display:none;"
+				            ng-click="submitLandCoverData();">Submit</button>
+               </div>
+               <div class="col col-33">
+               </div>
+               <div class="col col-33" align="right">
+                    <button id="btnSummaryLandCover" class="button button-balanced" style="display:none;"
+				            ng-click="summaryLandCoverData();">Summary</button>
+               </div> 
+    </div>
+    
     <div class="row" style="height:100px;">
                <div class="col col-33">
                     
@@ -49,7 +61,7 @@
 	    <span class="input-label">Dominant Woody Secies (by cover)</span>
 	</label> 
 	<label class="item item-input"> 
-	    <input type="text" id="dominant_woody" />
+	    <input type="text" id="dominant_woody" ng-model="dominant_woody_species"/>
 	</label> 
 	<br/>
 	
@@ -57,18 +69,18 @@
 	    <span class="input-label">Dominant NonWoody Secies (by cover)</span>
 	</label> 
 	<label class="item item-input"> 
-	    <input type="text" id="dominant_woody" />
+	    <input type="text" id="dominant_woody" ng-model="dominant_nonwoody_species"/>
 	</label> 
 	<br/>
 	
-	<div id="previously_submitted_date">
+	<div id="previously_submitted_date" style="display:none;">
 		<label class="item item-input"> 
 		    <span class="input-label">View previously submitted data</span>
 		</label> 
 		<label class="item item-input"> 
-		    <select ng-model="previously_submitted_date" ng-change="previously_submitted_date">
-		      <option value="2016-01-01">2016-01-01</option>
-		      <option value="2016-15-01">2016-15-01</option>
+		    <select ng-model="previously_submitted_date" ng-change="selectPreviouslySubmmittedDate(previously_submitted_date);">
+		      <option value="ADD_OLD">Insert data</option>
+		      <option value="VIEW_OLD">View Old</option>
 		    </select>
 		</label> 
 	</div>
